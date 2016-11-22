@@ -78,7 +78,7 @@ const resolver = (id, opts = {}, cb, sync = false) => {
         }
 
         let normalizedPath = normalizeFileExtension(
-            loader.normalizeSync(id).replace("file://", ""),
+            loader.normalizeSync(id).replace(/^win/.test(process.platform) ? "file:///" : "file://", ""),
             defaultJSExtensions,
             opts
         );
